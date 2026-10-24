@@ -12,5 +12,6 @@ CarPrivacyPrefs_FRAMEWORKS = UIKit CoreLocation
 CarPrivacyPrefs_PRIVATE_FRAMEWORKS = Preferences
 CarPrivacyPrefs_INSTALL_PATH = /Library/PreferenceBundles
 CarPrivacyPrefs_CFLAGS = -fobjc-arc -Wno-deprecated-declarations
+CarPrivacyPrefs_LDFLAGS = -lroothide
 
 include $(THEOS_MAKE_PATH)/bundle.mk
