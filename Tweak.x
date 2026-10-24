@@ -129,7 +129,7 @@ static void CPWriteStatusOnMain(void) {
 static BOOL CPShouldHideFromCar(id request) {
     if (!gEnabled || !gSuppressEnabled || !request) return NO;
     if (![request respondsToSelector:@selector(sectionIdentifier)]) return NO;
-    NSString *bundleID = [request sectionIdentifier];
+    NSString *bundleID = ((NCNotificationRequest *)request).sectionIdentifier;
     if (![bundleID isKindOfClass:NSString.class]) return NO;
     os_unfair_lock_lock(&gBlockedAppsLock);
     BOOL blocked = [gBlockedApps containsObject:bundleID];
@@ -138,7 +138,7 @@ static BOOL CPShouldHideFromCar(id request) {
 }
 
 static void CPNoteSuppressed(id request, NSString *where) {
-    NSString *bundleID = [request sectionIdentifier];
+    NSString *bundleID = ((NCNotificationRequest *)request).sectionIdentifier;
     CPLog(@"Hid %@ from CarPlay (%@)", bundleID, where);
     dispatch_async(dispatch_get_main_queue(), ^{
         gLastSuppressed = [NSString stringWithFormat:@"%@ via %@", bundleID, where];

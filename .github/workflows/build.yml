@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: macos-14
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install build tools
         run: brew install ldid xz make
@@ -28,7 +28,12 @@ jobs:
         run: "$THEOS/bin/install-sdk iPhoneOS16.5 > /dev/null"
 
       - name: Build package
-        run: gmake package FINALPACKAGE=1
+        run: |
+          set -o pipefail
+          if ! gmake package FINALPACKAGE=1 2>&1 | tee build.log; then
+            grep -E "error|Error|undefined" build.log | head -10 | while IFS= read -r line; do echo "::error::$line"; done
+            exit 1
+          fi
 
       - uses: actions/upload-artifact@v4
         with:
