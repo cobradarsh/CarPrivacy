@@ -1,0 +1,45 @@
+name: Build .deb
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build tools
+        run: brew install ldid xz make
+
+      - name: Install roothide Theos
+        run: |
+          git clone --recursive --depth 1 --shallow-submodules https://github.com/roothide/theos.git "$HOME/theos"
+          echo "THEOS=$HOME/theos" >> "$GITHUB_ENV"
+
+      - name: Install iOS 16.5 SDK
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: "$THEOS/bin/install-sdk iPhoneOS16.5 > /dev/null"
+
+      - name: Build package
+        run: gmake package FINALPACKAGE=1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CarPrivacy
+          path: packages/*.deb
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: CarPrivacy build ${{ github.run_number }}
+          body: Built from ${{ github.sha }}. Download the .deb on your iPhone and open it in Sileo or Filza.
+          files: packages/*.deb
+          prerelease: true

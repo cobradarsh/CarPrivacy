@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>title</key>
+	<string>CarPrivacy</string>
+	<key>items</key>
+	<array>
+		<!-- General -->
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>Changes apply right away, no respring needed.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>label</key>
+			<string>Enabled</string>
+			<key>key</key>
+			<string>enabled</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.adarsh.carprivacy</string>
+			<key>PostNotification</key>
+			<string>com.adarsh.carprivacy/prefsChanged</string>
+		</dict>
+
+		<!-- Car detection -->
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>My Car</string>
+			<key>footerText</key>
+			<string>Pick your car from your paired Bluetooth devices, or type its Bluetooth name(s) exactly as shown in Settings &gt; Bluetooth, separated by commas.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>label</key>
+			<string>Detect CarPlay</string>
+			<key>key</key>
+			<string>triggerCarPlay</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.adarsh.carprivacy</string>
+			<key>PostNotification</key>
+			<string>com.adarsh.carprivacy/prefsChanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>label</key>
+			<string>Detect Car Bluetooth</string>
+			<key>key</key>
+			<string>triggerBluetooth</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.adarsh.carprivacy</string>
+			<key>PostNotification</key>
+			<string>com.adarsh.carprivacy/prefsChanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>label</key>
+			<string>Car Bluetooth Devices</string>
+			<key>detail</key>
+			<string>CPDevicePickerController</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>label</key>
+			<string>Names</string>
+			<key>placeholder</key>
+			<string>e.g. My Car, CAR-MULTIMEDIA</string>
+			<key>key</key>
+			<string>carDeviceNames</string>
+			<key>default</key>
+			<string></string>
+			<key>defaults</key>
+			<string>com.adarsh.carprivacy</string>
+			<key>PostNotification</key>
+			<string>com.adarsh.carprivacy/prefsChanged</string>
+			<key>noAutoCorrect</key>
+			<true/>
+		</dict>
+
+		<!-- Part 1 -->
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Notification Privacy</string>
+			<key>footerText</key>
+			<string>Notifications from the apps you pick won't appear on the CarPlay screen. They still arrive on your iPhone as usual.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>label</key>
+			<string>Hide From CarPlay</string>
+			<key>key</key>
+			<string>suppressEnabled</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.adarsh.carprivacy</string>
+			<key>PostNotification</key>
+			<string>com.adarsh.carprivacy/prefsChanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>label</key>
+			<string>Apps to Hide</string>
+			<key>detail</key>
+			<string>ATLApplicationListMultiSelectionController</string>
+			<key>defaults</key>
+			<string>com.adarsh.carprivacy</string>
+			<key>key</key>
+			<string>blockedApps</string>
+			<key>defaultValue</key>
+			<array/>
+			<key>PostNotification</key>
+			<string>com.adarsh.carprivacy/prefsChanged</string>
+			<key>sections</key>
+			<array>
+				<dict>
+					<key>sectionType</key>
+					<string>Visible</string>
+				</dict>
+			</array>
+			<key>useSearchBar</key>
+			<true/>
+			<key>showIdentifiersAsSubtitle</key>
+			<true/>
+			<key>includeIdentifiersInSearch</key>
+			<true/>
+		</dict>
+
+		<!-- Part 2 -->
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Location Services</string>
+			<key>footerText</key>
+			<string>Location Services turn on when your car connects. "Restore" only turns them off again if they were off before you got in, so apps that already had location keep it. Turning Location Services off never erases per-app permissions; apps get their old access back next time it's on.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>label</key>
+			<string>Auto Location Services</string>
+			<key>key</key>
+			<string>locationEnabled</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.adarsh.carprivacy</string>
+			<key>PostNotification</key>
+			<string>com.adarsh.carprivacy/prefsChanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>label</key>
+			<string>When I Leave the Car</string>
+			<key>key</key>
+			<string>locationOffMode</string>
+			<key>default</key>
+			<integer>0</integer>
+			<key>defaults</key>
+			<string>com.adarsh.carprivacy</string>
+			<key>PostNotification</key>
+			<string>com.adarsh.carprivacy/prefsChanged</string>
+			<key>validTitles</key>
+			<array>
+				<string>Restore Previous State</string>
+				<string>Always Turn Off</string>
+				<string>Leave On</string>
+			</array>
+			<key>shortTitles</key>
+			<array>
+				<string>Restore</string>
+				<string>Turn Off</string>
+				<string>Leave On</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>Seconds to wait after disconnecting before turning Location Services off, so a brief Bluetooth drop or switching to wired CarPlay doesn't flip it.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSliderCell</string>
+			<key>key</key>
+			<string>disconnectDelay</string>
+			<key>default</key>
+			<real>20</real>
+			<key>min</key>
+			<real>0</real>
+			<key>max</key>
+			<real>120</real>
+			<key>showValue</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.adarsh.carprivacy</string>
+			<key>PostNotification</key>
+			<string>com.adarsh.carprivacy/prefsChanged</string>
+		</dict>
+
+		<!-- Troubleshooting -->
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Troubleshooting</string>
+			<key>footerText</key>
+			<string>Debug logging writes "[CarPrivacy]" lines to the system log and records which notification destinations SpringBoard uses, shown in Status.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>label</key>
+			<string>Debug Logging</string>
+			<key>key</key>
+			<string>debugLogging</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.adarsh.carprivacy</string>
+			<key>PostNotification</key>
+			<string>com.adarsh.carprivacy/prefsChanged</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Show Status</string>
+			<key>action</key>
+			<string>showStatus</string>
+		</dict>
+	</array>
+</dict>
+</plist>

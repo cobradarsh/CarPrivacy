@@ -1,0 +1,9 @@
+Package: com.adarsh.carprivacy
+Name: CarPrivacy
+Version: 1.0.0
+Architecture: iphoneos-arm64e
+Description: Hide chosen apps' notifications from CarPlay, and turn Location Services on automatically while you're in your car.
+Maintainer: Adarsh
+Author: Adarsh
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000), preferenceloader, com.opa334.altlist
